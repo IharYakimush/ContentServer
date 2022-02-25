@@ -1,0 +1,7 @@
+/tenant/id.original
+/tenant/id.format
+/tenant/id.ext.original
+/tenant/id.ext.format
+/tenant/id.ext/a.l.i.a.s.format
+/tenant/id.ext/conv/alias.format
+/tenant/layer1/layer2/conv/alias.format

@@ -3,7 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentServer.Core", "ContentServer.Core\ContentServer.Core.csproj", "{AB56398C-BD08-451B-B750-8844E95B1468}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentServer.Core", "ContentServer.Core\ContentServer.Core.csproj", "{AB56398C-BD08-451B-B750-8844E95B1468}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentServer.Host", "ContentServer.Host\ContentServer.Host.csproj", "{9A60C729-1EC2-4A0B-8DD6-32EE218134BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57686BC9-3CD7-4716-801D-2DD5F2AEA495}"
+	ProjectSection(SolutionItems) = preProject
+		urlPatterns.txt = urlPatterns.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentServer.Tests", "ContentServer.Tests\ContentServer.Tests.csproj", "{584B787C-B940-4F68-B326-54CF678FF299}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +24,14 @@ Global
 		{AB56398C-BD08-451B-B750-8844E95B1468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB56398C-BD08-451B-B750-8844E95B1468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB56398C-BD08-451B-B750-8844E95B1468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A60C729-1EC2-4A0B-8DD6-32EE218134BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A60C729-1EC2-4A0B-8DD6-32EE218134BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A60C729-1EC2-4A0B-8DD6-32EE218134BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A60C729-1EC2-4A0B-8DD6-32EE218134BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584B787C-B940-4F68-B326-54CF678FF299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584B787C-B940-4F68-B326-54CF678FF299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584B787C-B940-4F68-B326-54CF678FF299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584B787C-B940-4F68-B326-54CF678FF299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

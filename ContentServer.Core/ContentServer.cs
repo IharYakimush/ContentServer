@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContentServer.Core.Internal;
+
+using Microsoft.AspNetCore.Http;
 
 using System.Text.RegularExpressions;
 
@@ -17,33 +19,13 @@ namespace ContentServer.Core
         {
             if (string.Equals(context.Request.Method, HttpMethods.Head, StringComparison.OrdinalIgnoreCase) || string.Equals(context.Request.Method, HttpMethods.Get, StringComparison.OrdinalIgnoreCase))
             {
-                if (this.TryMatchUrl(context.Request.Path.Value, out string? tenant, out string? main, out string? format))
+                if (this.Options.TryMatchUrl(context.Request.Path.Value, out string? tenant, out string? main, out string? format))
                 {
 
                 }                
             }
 
             await next(context);
-        }
-
-        internal bool TryMatchUrl(string value, out string? tenant, out string? main, out string? format)
-        {
-            Match tenantMatch = this.Options.UrlRegex.Match(value);
-
-            if (tenantMatch.Success)
-            {
-                tenant = tenantMatch.Result(this.Options.UrlTenant);
-                main = tenantMatch.Result(this.Options.UrlMain);
-                format = tenantMatch.Result(this.Options.UrlFormat);
-
-                return true;
-            }
-
-            tenant = null;
-            main = null;
-            format = null;
-
-            return false;
-        }
+        }        
     }
 }

@@ -9,7 +9,7 @@ namespace ContentServer.Core
 {
     public class ContentServerOptions
     {
-        internal Regex UrlRegex = new Regex("^/([^/]*)/(.*).([a-z,A-Z,0-1]*)$", RegexOptions.Compiled & RegexOptions.Singleline);
+        internal Regex UrlRegex = new Regex("^/([^/]*)/(.*)\\.([a-z,A-Z,0-1]*)$", RegexOptions.Compiled & RegexOptions.Singleline);
         public string UrlPattern 
         {
             get => this.UrlRegex.ToString();

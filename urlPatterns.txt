@@ -5,3 +5,47 @@
 /tenant/id.ext/a.l.i.a.s.format
 /tenant/id.ext/conv/alias.format
 /tenant/layer1/layer2/conv/alias.format
+
+/tenant/id.ext/a.l.i.a.s.format
+/tenant/id.ext,w_100/a.l.i.a.s.format
+/tenant/id.ext,w_100/w_50/a.l.i.a.s.format
+/tenant/id1.ext,w_100/id2.ext,w_100/a.l.i.a.s.format
+/tenant/id1.ext,w_100/id2.ext,w_100/w_50/a.l.i.a.s.format
+
+
+/tenant/id1.ext,w_100/id2.ext,w_100/a_merge,w_50/a.l.i.a.s.format
+
+
+a_merge,w_200
+	a_merge
+		srv_id1,w100,p_product
+		srv_id1,w100,p_shadow
+	src_logo,w_50
+
+
+a_merge((id1.jpg,w_100),id2),w_100
+
+a_imageToImage(format($1,png))
+
+
+id.ext/format(jpg) -> format($0,jpg) -> format(ref($0),jpg)
+
+merge(($0,f_jpg->f_png))
+
+/video/watermark/merge((thumbnail,w_100),$1,f_jpg)
+
+default
+	merge
+		default
+			thumbnail
+			w_100
+	$1
+	f_jpg
+
+function call:
+	name
+	name($1)
+	name($1,p_1)
+	name(p_1)
+ref:
+	$0

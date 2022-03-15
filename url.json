@@ -1,15 +1,17 @@
 {
-  "name": "default",
-  "params": [
-    {
-      "name": "f",
-      "value": "jpg"
-    },
-    {
-      "name": "w",
-      "value": "100"
-    }
-  ],
+  "conversion": {
+    "name": "default",
+    "params": [
+      {
+        "name": "f",
+        "value": "jpg"
+      },
+      {
+        "name": "w",
+        "value": "100"
+      }
+    ]
+  },
   "input": [
     { "alias": "$0" }
   ]

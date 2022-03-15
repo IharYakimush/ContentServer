@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContentServer.Core.Helpers;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -28,21 +30,14 @@ namespace ContentServer.Core.Conversion
                     throw new ArgumentException(nameof(input), $"input value {item} not match {inputPattern} pattern");
                 }
             }
+
+            this.Output = HashHelper.HashMd5(this.Conversion.Hash, this.Input);
         }
         public IReadOnlySet<string> Input { get; }
         
         public ConversionDefinition Conversion { get; }
 
-        public string Output()
-        {
-            return Convert.ToHexString(
-                MD5.HashData(
-                    Encoding.UTF8.GetBytes(
-                        this.Conversion.Hash + string.Join(' ', this.Input)
-                        )
-                    )
-                );
-        }
+        public string Output { get; }        
     }
     public class ConversionPipeline
     {

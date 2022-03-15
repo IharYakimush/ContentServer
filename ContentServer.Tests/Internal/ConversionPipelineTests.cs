@@ -1,5 +1,7 @@
 ﻿using ContentServer.Core.Conversion;
 
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +10,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ContentServer.Tests.Internal
 {
-    public class ConversionPipelineTests
+    public class ConversionPipelineValidationTests
     {
+        private static Dictionary<string, string> input = new Dictionary<string, string>() { { "0", "jpg" } };
+        private static List<ConversionAction> actions = new List<ConversionAction>() { new DefaultConversionAction() };
+
+        public ConversionPipelineValidationTests(ITestOutputHelper output)
+        {
+            Output = output ?? throw new ArgumentNullException(nameof(output));
+        }
+
+        public ITestOutputHelper Output { get; }
+
         [Fact]
-        public void ChangeFormat()
+        public void Validate()
         {
             ConversionPipeline pipeline = new ConversionPipeline(
                 new Dictionary<int, ConversionStep>()
@@ -23,10 +36,16 @@ namespace ContentServer.Tests.Internal
                             new ConversionDefinition("default",
                                 new Dictionary<string, string>
                                 {
-                                    {"f","webp" }
-                                }), "$0")
+                                    {"f","png" }
+                                }), "0")
                     }
                 });
+
+            bool result = pipeline.Validate(input, actions, out string? description);
+
+            this.Output.WriteLine(description ?? string.Empty);
+
+            Assert.True(result);
         }
     }
 }

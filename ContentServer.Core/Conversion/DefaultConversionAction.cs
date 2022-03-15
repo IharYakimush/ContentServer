@@ -4,21 +4,19 @@ namespace ContentServer.Core.Conversion
 {
     public class DefaultConversionAction : ConversionAction
     {
-        private static readonly ParamDefinition formatParam = new ParamDefinition("f", new Regex("^(jpg|png)$"));
-
         public override string Name => "default";
-
-        public override IReadOnlyCollection<ParamDefinition> SupportedParams { get; } = new List<ParamDefinition>()
-        {
-            new ParamDefinition("w",new Regex("^[1-9]{1}[0-9]{0,4}$",RegexOptions.Compiled & RegexOptions.Singleline)),
-            formatParam
-        };
 
         public override IReadOnlySet<string> InputFormats { get; } = new HashSet<string>(new[] { "jpg" });
 
-        public override string OutputFormat(string inputFormat, IReadOnlyDictionary<ParamDefinition, string> actualParams)
+        public override IReadOnlyDictionary<string, Func<string, string?>> SupportedParams { get; } = new Dictionary<string, Func<string, string?>>() 
+        { 
+            { "f", (v) => ValidateRegexp(v, new Regex("^(jpg|png)$")) },
+            { "w", (v) => ValidateRegexp(v, new Regex("^[1-9]{1}[0-9]{0,4}$")) },
+        };
+
+        public override string OutputFormat(IReadOnlyCollection<string> inputFormats, IReadOnlyDictionary<string, string> actualParams)
         {
-            return actualParams?[formatParam] ?? inputFormat;
+            return actualParams?["f"] ?? inputFormats.First();
         }
     }
 }

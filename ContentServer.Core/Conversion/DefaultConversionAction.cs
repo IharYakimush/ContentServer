@@ -6,7 +6,7 @@ namespace ContentServer.Core.Conversion
     {
         public override string Name => "default";
 
-        public override IReadOnlySet<string> InputFormats { get; } = new HashSet<string>(new[] { "jpg" });
+        public override IReadOnlySet<string> InputFormats { get; } = new HashSet<string>(new[] { "jpg", "png" });
 
         public override IReadOnlyDictionary<string, Func<string, string?>> SupportedParams { get; } = new Dictionary<string, Func<string, string?>>() 
         { 

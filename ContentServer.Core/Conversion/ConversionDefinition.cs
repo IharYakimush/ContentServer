@@ -30,7 +30,12 @@ namespace ContentServer.Core.Conversion
 
         public string GetHash()
         {
-            return HashHelper.HashMd5(this.Name, this.Values.OrderBy(p => p.Key).Select(p => p.Key + p.Value));
+            return GetHash(this.Name,this.Values);
+        }
+
+        public static string GetHash(string name, IReadOnlyDictionary<string, string> values)
+        {
+            return HashHelper.HashMd5(name,values.OrderBy(p => p.Key).Select(p => p.Key + p.Value));
         }
     }
 }

@@ -9,15 +9,16 @@ namespace ContentServer.Core.Conversion
     public static class ConversionPipelineExtensions
     {
         internal static bool ValidateFormat(
-            this ConversionPipeline pipeline,            
+            this ConversionPipeline pipeline,
             IReadOnlyDictionary<string, ConversionAction> actions,
             out FileDefinition? output,
             out string? description)
         {
             output = null;
             description = null;
-            Dictionary<string, string> inputs = new Dictionary<string, string>(pipeline.Inputs.Select(kv => new KeyValuePair<string, string>(kv.Key, kv.Value.Format)));
+            Dictionary<string, FileDefinition> inputs = new Dictionary<string, FileDefinition>(pipeline.Inputs);
             HashSet<string> usedInput = new HashSet<string>();
+            HashSet<string> usedOutput = new HashSet<string>();
             foreach (var item in pipeline.Steps)
             {
                 ConversionDefinition conversion = item.Conversion;
@@ -34,7 +35,13 @@ namespace ContentServer.Core.Conversion
                     return false;
                 }
 
-                ConversionAction action = actions[conversion.Name];                
+                if (!usedOutput.Add(item.Output))
+                {
+                    description = $"Conversion {conversion.Name}. Output alias {item.Output} already used by another conversion.";
+                    return false;
+                }
+
+                ConversionAction action = actions[conversion.Name];
 
                 if (item.Input.Count < action.MinInputCount || item.Input.Count > action.MaxInputCount)
                 {
@@ -46,7 +53,7 @@ namespace ContentServer.Core.Conversion
                 {
                     if (inputs.ContainsKey(inp))
                     {
-                        if (!action.InputFormats.Contains(inputs[inp]))
+                        if (!action.InputFormats.Contains(inputs[inp].Format))
                         {
                             description = $"Conversion {conversion.Name}. Input file with alias {inp}. Format {inputs[inp]} not supported.";
                             return false;
@@ -70,7 +77,6 @@ namespace ContentServer.Core.Conversion
                         }
 
                         usedInput.Add(inp);
-
                     }
                     else
                     {
@@ -79,23 +85,30 @@ namespace ContentServer.Core.Conversion
                     }
                 }
 
+                FileDefinition actionOutput = action.OutputFormat(item.Input.Select(i => inputs[i]).ToArray(), item.Conversion.Values);
+                item.ValidatedHash = actionOutput.Etag;
+
                 if (!inputs.ContainsKey(item.Output))
                 {
-                    inputs.Add(item.Output, action.OutputFormat(item.Input.Select(i => inputs[i]).ToArray(), item.Conversion.Values));
+                    inputs.Add(item.Output, actionOutput);
                 }
             }
 
-            string id = pipeline.Steps.Last().Output;
+            ConversionStep last = pipeline.Steps.Last();
 
-            var ignoredInput = inputs.Keys.Where(k=> !usedInput.Contains(k) && id != k).ToArray();
+            string id = last.Output;
+            string etag = pipeline.Steps.Last().ValidatedHash;
+
+            var ignoredInput = inputs.Keys.Where(k => !usedInput.Contains(k) && id != k).ToArray();
 
             if (ignoredInput.Any())
             {
                 description = $"Inputs file with alias {string.Join(", ", ignoredInput)}. Not used in any conversion";
                 return false;
             }
-            
-            output = new FileDefinition(id, string.Empty, inputs[id]);
+
+            output = new FileDefinition(id, etag, inputs[id].Format);
+
             return true;
         }
     }

@@ -26,12 +26,26 @@ namespace ContentServer.Core.Conversion
             out FileDefinition? output,
             out string? description) 
         {
+            output = null;
+            foreach (var item in this.Inputs)
+            {
+                if (string.IsNullOrWhiteSpace(item.Value.Format))
+                {
+                    description = $"Input file with alias {item.Key}. Format not provided";
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(item.Value.Etag))
+                {
+                    description = $"Input file with alias {item.Key}. ETag not provided";
+                    return false;
+                }
+            }
+
             if (!this.ValidateFormat(actions, out output, out description))
             {
                 return false;
-            }
-
-            output = output! with { Etag = HashHelper.HashMd5(output.Id, this.Inputs.Select(kv => $"{kv.Key}{kv.Value.Etag}")) };
+            }            
 
             return true;
         }

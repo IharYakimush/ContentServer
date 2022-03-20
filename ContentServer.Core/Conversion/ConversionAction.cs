@@ -9,7 +9,7 @@ namespace ContentServer.Core.Conversion
         public abstract IReadOnlyCollection<string> InputFormats { get; }
         public virtual int MinInputCount { get; } = 1;
         public virtual int MaxInputCount { get; } = 1;
-        public abstract string OutputFormat(IReadOnlyCollection<string> inputFormats, IReadOnlyDictionary<string, string> actualParams);
+        public abstract FileDefinition OutputFormat(IReadOnlyCollection<FileDefinition> inputFormats, IReadOnlyDictionary<string, string> actualParams);
 
         protected static string? ValidateRegexp(string value, Regex pattern)
         {

@@ -6,27 +6,35 @@ using System.Threading.Tasks;
 
 namespace ContentServer.Core.Conversion
 {
-    public static class ConversionPipelineValidation
+    public static class ConversionPipelineExtensions
     {
-        public static bool Validate(
-            this ConversionPipeline pipeline,
-            IReadOnlyDictionary<string, string> inputsWithFormat,
-            IReadOnlyCollection<ConversionAction> actions,
+        internal static bool ValidateFormat(
+            this ConversionPipeline pipeline,            
+            IReadOnlyDictionary<string, ConversionAction> actions,
+            out FileDefinition? output,
             out string? description)
         {
+            output = null;
             description = null;
-            Dictionary<string, string> inputs = new Dictionary<string, string>(inputsWithFormat);
-            foreach (var item in pipeline.Steps.OrderBy(p => p.Key).Select(p => p.Value))
+            Dictionary<string, string> inputs = new Dictionary<string, string>(pipeline.Inputs.Select(kv => new KeyValuePair<string, string>(kv.Key, kv.Value.Format)));
+            HashSet<string> usedInput = new HashSet<string>();
+            foreach (var item in pipeline.Steps)
             {
                 ConversionDefinition conversion = item.Conversion;
 
-                ConversionAction? action = actions.SingleOrDefault(a => string.Equals(a.Name, conversion.Name));
+                if (!item.Validate(out description))
+                {
+                    description = "Conversion {conversion.Name}. " + description;
+                    return false;
+                }
 
-                if (action == null)
+                if (!actions.ContainsKey(conversion.Name))
                 {
                     description = $"Conversion {conversion.Name}. Not registered";
                     return false;
                 }
+
+                ConversionAction action = actions[conversion.Name];                
 
                 if (item.Input.Count < action.MinInputCount || item.Input.Count > action.MaxInputCount)
                 {
@@ -59,7 +67,10 @@ namespace ContentServer.Core.Conversion
                                 description = $"Conversion {conversion.Name}. Parameter with name {v.Key}. {validation}";
                                 return false;
                             }
-                        }                        
+                        }
+
+                        usedInput.Add(inp);
+
                     }
                     else
                     {
@@ -74,6 +85,17 @@ namespace ContentServer.Core.Conversion
                 }
             }
 
+            string id = pipeline.Steps.Last().Output;
+
+            var ignoredInput = inputs.Keys.Where(k=> !usedInput.Contains(k) && id != k).ToArray();
+
+            if (ignoredInput.Any())
+            {
+                description = $"Inputs file with alias {string.Join(", ", ignoredInput)}. Not used in any conversion";
+                return false;
+            }
+            
+            output = new FileDefinition(id, string.Empty, inputs[id]);
             return true;
         }
     }

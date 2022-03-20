@@ -24,10 +24,8 @@ namespace ContentServer.Core.Conversion
             Values = values;
         }
 
-        [JsonPropertyName("name")]
         public string Name { get; }
 
-        [JsonPropertyName("values")]
         public IReadOnlyDictionary<string, string> Values { get; }
 
         public string GetHash()

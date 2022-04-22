@@ -9,6 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{57686BC9-3
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F57F2C01-44D5-446A-B410-C4ED69B9E4B9}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\s.json = Docs\s.json
+		Docs\url.json = Docs\url.json
+		Docs\urlPatterns.txt = Docs\urlPatterns.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{31B13CDE-1AE9-4DC8-9045-BAAE95D1E8F6}"
 EndProject
@@ -21,6 +26,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{71CA4B63-EF8B-4855-81AB-017E4E4E5C91}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentServer.Host", "Hosts\ContentServer.Host\ContentServer.Host.csproj", "{1D636B4A-96B9-405C-BD94-EE8B04F8854A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{AC0C7384-9937-41AC-8FCD-94CD34026D3C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

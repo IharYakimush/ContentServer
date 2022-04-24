@@ -14,7 +14,27 @@ namespace ContentServer.Core.Conversion
         private static readonly Regex argReg = new Regex(@"(?:[^\)\(,]+|\([^\)\(]+\))+");
         public static IReadOnlyCollection<ConversionStep> Parse(string value)
         {
+
             return new ConversionStep[0];
+        }
+
+        private static ConversionStep ParseStep(string value)
+        {
+            string fname = "default";
+            var fmatch = funcReg.Match(value);
+            if (fmatch.Success)
+            {
+                fname = fmatch.Groups[0].Value ?? fname;
+                value = fmatch.Groups[1].Value;
+            }
+
+            var pmatch = argReg.Match(value);
+            if (!pmatch.Success)
+            {
+                throw new ArgumentException();
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

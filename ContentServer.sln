@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{AC0C73
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConversionServer.Host", "Hosts\ConversionServer.Host\ConversionServer.Host.csproj", "{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{1D636B4A-96B9-405C-BD94-EE8B04F8854A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D636B4A-96B9-405C-BD94-EE8B04F8854A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D636B4A-96B9-405C-BD94-EE8B04F8854A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{9F0F2264-DA9C-4D32-B978-346ED30118CB} = {31B13CDE-1AE9-4DC8-9045-BAAE95D1E8F6}
 		{8D316D13-E669-485A-B47C-0F929DD47106} = {EE5A539A-EFFB-42E8-B604-0F5D3F3209B5}
 		{1D636B4A-96B9-405C-BD94-EE8B04F8854A} = {71CA4B63-EF8B-4855-81AB-017E4E4E5C91}
+		{F56F595B-F9ED-48CF-8FE1-AB3651D8E00B} = {71CA4B63-EF8B-4855-81AB-017E4E4E5C91}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7349413-90D3-423C-9798-CFB6974915B9}

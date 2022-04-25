@@ -1,0 +1,12 @@
+[
+  {
+    "Input": [],
+    "Conversion": {
+      "Name": "default",
+      "Values": {
+        "f": "jpg"
+      }
+    },
+    "Output": "result"
+  }
+]

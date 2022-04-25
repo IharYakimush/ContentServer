@@ -18,6 +18,8 @@ namespace ContentServer.Core.Conversion
 
         public override FileDefinition OutputFormat(IReadOnlyCollection<FileDefinition> inputFormats, IReadOnlyDictionary<string, string> actualParams)
         {
+            if (actualParams == null) throw new ArgumentNullException(nameof(actualParams));
+
             FileDefinition result = inputFormats.Single();
             Dictionary<string, string> hashParams = new Dictionary<string, string>(actualParams);
 

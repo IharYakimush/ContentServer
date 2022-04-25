@@ -13,6 +13,8 @@ namespace ContentServer.Core.Conversion
 
         protected static string? ValidateRegexp(string value, Regex pattern)
         {
+            if (pattern == null) throw new ArgumentNullException(nameof(pattern));
+
             if (pattern.IsMatch(value))
             {
                 return null;

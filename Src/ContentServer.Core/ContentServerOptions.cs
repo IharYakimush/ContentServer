@@ -10,16 +10,16 @@ namespace ContentServer.Core
     public class ContentServerOptions
     {
         internal Regex UrlRegex = new Regex("^/([^/]*)/(.*)\\.([a-z,A-Z,0-1]*)$", RegexOptions.Compiled & RegexOptions.Singleline);
-        public string UrlPattern 
+        public string RegexPattern 
         {
             get => this.UrlRegex.ToString();
             set => this.UrlRegex = new Regex(value);
         }
 
-        public string UrlTenant { get; set; } = "$1";
+        public string TenantReplacement { get; set; } = "$1";
 
-        public string UrlMain { get; set; } = "$2";
+        public string MainReplacement { get; set; } = "$2";
 
-        public string UrlFormat { get; set; } = "$3";
+        public string FormatReplacement { get; set; } = "$3";
     }
 }

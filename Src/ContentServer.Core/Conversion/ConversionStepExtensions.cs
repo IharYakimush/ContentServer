@@ -15,7 +15,7 @@ namespace ContentServer.Core.Conversion
         public static IReadOnlyCollection<ConversionStep> Parse(string value)
         {
 
-            return new ConversionStep[0];
+            return Array.Empty<ConversionStep>();
         }
 
         private static ConversionStep ParseStep(string value)
@@ -31,7 +31,7 @@ namespace ContentServer.Core.Conversion
             var pmatch = argReg.Match(value);
             if (!pmatch.Success)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("params", nameof(value));
             }
 
             throw new NotImplementedException();

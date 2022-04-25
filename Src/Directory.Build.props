@@ -1,0 +1,14 @@
+<Project>
+	<PropertyGroup>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<Authors>IharYakimush</Authors>
+		<Company>IharYakimush</Company>
+		
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>CA1014;CS1591;CA2007;CA1848;CA1812</NoWarn>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>		
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<IsPackable>True</IsPackable>
+	</PropertyGroup>
+</Project>

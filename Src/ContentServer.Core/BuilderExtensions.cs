@@ -20,14 +20,14 @@ namespace ContentServer.Core
                 return options;
             });
 
-            services.TryAddSingleton<ContentServer>();
+            services.TryAddSingleton<ContentServerMiddleware>();
             
             return services;
         }
 
         public static IApplicationBuilder UseContentServer(this IApplicationBuilder builder)
         {
-            builder.UseMiddleware<ContentServer>();
+            builder.UseMiddleware<ContentServerMiddleware>();
             return builder;
         }
     }

@@ -26,6 +26,8 @@ namespace ContentServer.Core.Conversion
             out FileDefinition? output,
             out string? description) 
         {
+            if (actions == null) throw new ArgumentNullException(nameof(actions));
+
             output = null;
             foreach (var item in this.Inputs)
             {

@@ -16,8 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F57F2C01-4
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{31B13CDE-1AE9-4DC8-9045-BAAE95D1E8F6}"
+	ProjectSection(SolutionItems) = preProject
+		Src\Directory.Build.props = Src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EE5A539A-EFFB-42E8-B604-0F5D3F3209B5}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Directory.Build.props = Tests\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentServer.Core", "Src\ContentServer.Core\ContentServer.Core.csproj", "{9F0F2264-DA9C-4D32-B978-346ED30118CB}"
 EndProject

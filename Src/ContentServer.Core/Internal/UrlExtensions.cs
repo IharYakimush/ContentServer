@@ -11,9 +11,9 @@ namespace ContentServer.Core.Internal
 
             if (tenantMatch.Success)
             {
-                tenant = tenantMatch.Result(options.UrlTenant);
-                main = tenantMatch.Result(options.UrlMain);
-                format = tenantMatch.Result(options.UrlFormat);
+                tenant = tenantMatch.Result(options.TenantReplacement);
+                main = tenantMatch.Result(options.MainReplacement);
+                format = tenantMatch.Result(options.FormatReplacement);
 
                 return true;
             }

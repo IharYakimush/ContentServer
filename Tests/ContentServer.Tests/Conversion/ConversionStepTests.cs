@@ -40,6 +40,17 @@ namespace ContentServer.Tests.Conversion
                 Regex.Replace(result, "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1"));
         }
 
+        [Theory]
+        [InlineData("qwe", "Unable to parse param qwe in qwe for default step")]
+        public void ParseFailed(string value, string msg)
+        {
+            this.Output.WriteLine(value);
+            var exc = Assert.Throws<ArgumentException>(() => ConversionStepExtensions.ParseSteps(value).ToArray());
+
+            this.Output.WriteLine(exc.Message);
+            Assert.Contains(msg, exc.Message);
+        }
+
         public static IEnumerable<object[]> GetParseData(string resourcePrefix)
         {
             foreach (var name in typeof(ConversionStepTests).Assembly.GetManifestResourceNames().Where(s => s.StartsWith(resourcePrefix)))

@@ -5,22 +5,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Conversion\ParseConversionStep\(f_jpg).json" />
-    <None Remove="Conversion\ParseConversionStep\f_jpg,w_100.json" />
-    <None Remove="Conversion\ParseConversionStep\f_jpg.json" />
-    <None Remove="Conversion\ParseConversionStep\qwe(f_jpg).json" />
-    <None Remove="Conversion\ParseConversionStep\qwe(f_jpg,w_100).json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Conversion\ParseConversionStep\%28f_jpg%29.json" />
-    <EmbeddedResource Include="Conversion\ParseConversionStep\qwe%28f_jpg%29.json" />
-    <EmbeddedResource Include="Conversion\ParseConversionStep\qwe%28f_jpg,w_100%29.json" />
-    <EmbeddedResource Include="Conversion\ParseConversionStep\f_jpg,w_100.json" />
-    <EmbeddedResource Include="Conversion\ParseConversionStep\f_jpg.json" />
-  </ItemGroup>
-
 	<ItemGroup>
     <ProjectReference Include="..\..\Src\ContentServer.Core\ContentServer.Core.csproj" />
   </ItemGroup>

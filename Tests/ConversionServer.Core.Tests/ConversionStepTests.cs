@@ -1,18 +1,13 @@
-﻿using ContentServer.Core.Conversion;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ContentServer.Tests.Conversion
+namespace ConversionServer.Core.Tests
 {
     public class ConversionStepTests
     {
@@ -24,7 +19,7 @@ namespace ContentServer.Tests.Conversion
         public ITestOutputHelper Output { get; }
 
         [Theory]
-        [MemberData(nameof(GetParseData), "ContentServer.Tests.Conversion.ParseConversionStep.")]
+        [MemberData(nameof(GetParseData), "ConversionServer.Core.Tests.ParseConversionStep.")]
         public void Parse(string resourceName, string content)
         {
             this.Output.WriteLine(resourceName);

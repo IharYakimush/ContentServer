@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ParseConversionStep\(f_jpg).json" />
+    <None Remove="ParseConversionStep\f_jpg,w_100.json" />
+    <None Remove="ParseConversionStep\f_jpg.json" />
+    <None Remove="ParseConversionStep\qwe(f_jpg).json" />
+    <None Remove="ParseConversionStep\qwe(f_jpg,w_100).json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ParseConversionStep\(f_jpg).json" />
+    <EmbeddedResource Include="ParseConversionStep\f_jpg,w_100.json" />
+    <EmbeddedResource Include="ParseConversionStep\f_jpg.json" />
+    <EmbeddedResource Include="ParseConversionStep\qwe(f_jpg).json" />
+    <EmbeddedResource Include="ParseConversionStep\qwe(f_jpg,w_100).json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\ConversionServer.Core\ConversionServer.Core.csproj" />
+  </ItemGroup>
+
+</Project>

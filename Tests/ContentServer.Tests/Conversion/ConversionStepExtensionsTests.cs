@@ -1,19 +1,13 @@
-﻿using ContentServer.Core.Conversion;
-
-using Microsoft.VisualStudio.TestPlatform.Utilities;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-
+using ContentServer.Core.Conversion;
+using ConversionServer.Core;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ContentServer.Tests.Internal
+namespace ContentServer.Tests.Conversion
 {
     public class ConversionStepExtensionsTests
     {
@@ -67,15 +61,15 @@ namespace ContentServer.Tests.Internal
             ConversionStep toJpg = new ConversionStep(new ConversionDefinition("default", new Dictionary<string, string> { { "f", "png" } }), toPng.Output);
             List<ConversionStep> steps = new List<ConversionStep>() { toPng, toJpg };
 
-            JsonDocument? result = JsonSerializer.SerializeToDocument(steps);
+            JsonDocument result = JsonSerializer.SerializeToDocument(steps);
             Assert.NotNull(result);
 
             this.Output.WriteLine(result.RootElement.ToString());
 
-            List<ConversionStep> clone = result.Deserialize<List<ConversionStep>>();
+            List<ConversionStep>? clone = result.Deserialize<List<ConversionStep>>();
             Assert.NotNull(clone);
 
-            Assert.Equal(steps.Count, clone.Count);
+            Assert.Equal(steps.Count, clone!.Count);
         }
     }
 }

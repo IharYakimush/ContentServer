@@ -1,9 +1,8 @@
 using ContentServer.Core;
 using ContentServer.Core.Internal;
-
 using Xunit;
 
-namespace ContentServer.Tests
+namespace ContentServer.Tests.Internal
 {
     public class UrlExtensionsTest
     {

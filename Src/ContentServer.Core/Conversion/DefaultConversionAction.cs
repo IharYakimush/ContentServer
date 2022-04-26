@@ -1,6 +1,5 @@
-﻿using ContentServer.Core.Helpers;
-
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using ConversionServer.Core;
 
 namespace ContentServer.Core.Conversion
 {

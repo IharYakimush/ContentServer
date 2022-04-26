@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ContentServer.Core.Conversion
+namespace ConversionServer.Core
 {
     public abstract class ConversionAction
     {

@@ -1,9 +1,7 @@
-﻿using ContentServer.Core.Helpers;
-
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace ContentServer.Core.Conversion
+namespace ConversionServer.Core
 {
     public class ConversionStep
     {

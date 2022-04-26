@@ -24,12 +24,8 @@ namespace ContentServer.Tests.Conversion
         public ITestOutputHelper Output { get; }
 
         [Theory]
-        [InlineData("f_jpg")]
-        [InlineData("(f_jpg)")]
-        [InlineData("f_jpg,w_100")]
-        [InlineData("qwe(f_jpg)")]
-        [InlineData("qwe(f_jpg,w_100)")]
-        public void Parse(string resourceName)
+        [MemberData(nameof(GetParseData), "ContentServer.Tests.Conversion.ParseConversionStep.")]
+        public void Parse(string resourceName, string content)
         {
             this.Output.WriteLine(resourceName);
             var steps = ConversionStepExtensions.ParseSteps(resourceName).ToArray();
@@ -39,10 +35,17 @@ namespace ContentServer.Tests.Conversion
 
             var result = JsonSerializer.Serialize(steps, options);
             this.Output.WriteLine(result);
-            using StreamReader reader = new StreamReader(typeof(ConversionStepTests).Assembly.GetManifestResourceStream("ContentServer.Tests.Conversion.ParseConversionStep." + resourceName + ".json"));
             Assert.Equal(
-                Regex.Replace(reader.ReadToEnd(), "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1"), 
+                Regex.Replace(content, "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1"), 
                 Regex.Replace(result, "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1"));
+        }
+
+        public static IEnumerable<object[]> GetParseData(string resourcePrefix)
+        {
+            foreach (var name in typeof(ConversionStepTests).Assembly.GetManifestResourceNames().Where(s => s.StartsWith(resourcePrefix)))
+            {
+                yield return new object[] { Path.GetFileNameWithoutExtension(name).Split(".").Last(), new StreamReader(typeof(ConversionStepTests).Assembly.GetManifestResourceStream(name) ?? throw new InvalidOperationException()).ReadToEnd() };
+            }
         }
     }
 }

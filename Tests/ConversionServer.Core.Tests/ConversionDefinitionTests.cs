@@ -1,16 +1,10 @@
-﻿using ContentServer.Core.Conversion;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using ConversionServer.Core;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ContentServer.Tests.Conversion
+namespace ConversionServer.Core.Tests
 {
     public class ConversionDefinitionTests
     {

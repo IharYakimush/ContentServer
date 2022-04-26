@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using ContentServer.Core.Conversion;
-using ConversionServer.Core;
+using ConversionServer.Core.Tests.Internal;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ContentServer.Tests.Conversion
+namespace ConversionServer.Core.Tests
 {
     public class ConversionStepExtensionsTests
     {
         private static Dictionary<string, FileDefinition> inputSingle = new Dictionary<string, FileDefinition>() { { "0", new FileDefinition("any", "any", "jpg") } };
-        private static Dictionary<string, ConversionAction> actions = new List<ConversionAction>() { new DefaultConversionAction() }.ToDictionary(a => a.Name);
+        private static Dictionary<string, ConversionAction> actions = new List<ConversionAction>() { new DefaultTestConversionAction() }.ToDictionary(a => a.Name);
 
         public ConversionStepExtensionsTests(ITestOutputHelper output)
         {

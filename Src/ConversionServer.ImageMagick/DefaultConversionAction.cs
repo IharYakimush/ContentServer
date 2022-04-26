@@ -1,11 +1,11 @@
 ﻿using System.Text.RegularExpressions;
 using ConversionServer.Core;
 
-namespace ContentServer.Core.Conversion
+namespace ConversionServer.ImageMagick
 {
     public class DefaultConversionAction : ConversionAction
     {
-        public override string Name => "default";
+        public override string Name => DefaultName;
 
         public override IReadOnlySet<string> InputFormats { get; } = new HashSet<string>(new[] { "jpg", "png" });
 

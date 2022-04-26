@@ -4,6 +4,7 @@ namespace ConversionServer.Core
 {
     public abstract class ConversionAction
     {
+        public const string DefaultName = "default";
         public abstract string Name { get; }
         public abstract IReadOnlyDictionary<string,Func<string,string?>> SupportedParams { get; }
         public abstract IReadOnlyCollection<string> InputFormats { get; }

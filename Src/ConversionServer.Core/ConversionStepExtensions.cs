@@ -9,7 +9,7 @@ namespace ConversionServer.Core
         private static readonly Regex argReg = new Regex(@"(?:[^\)\(,]+|\([^\)\(]+\))+");
         public static IEnumerable<ConversionStep> ParseSteps(string value)
         {
-            string fname = "default";
+            string fname = ConversionAction.DefaultName;
             var fmatch = funcReg.Match(value);
             if (fmatch.Success)
             {

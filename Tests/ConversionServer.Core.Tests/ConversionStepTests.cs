@@ -37,6 +37,9 @@ namespace ConversionServer.Core.Tests
 
         [Theory]
         [InlineData("qwe", "Unable to parse param qwe in qwe for default step")]
+        [InlineData("asd(qwe)", "Unable to parse param qwe in qwe for asd step")]
+        [InlineData("(qwe)", "Unable to parse param qwe in qwe for default step")]
+        [InlineData("t_asd,qwe", "Unable to parse param qwe in t_asd,qwe for default step")]
         public void ParseFailed(string value, string msg)
         {
             this.Output.WriteLine(value);

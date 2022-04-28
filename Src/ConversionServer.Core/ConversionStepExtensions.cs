@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ConversionServer.Core
 {
@@ -63,7 +64,7 @@ namespace ConversionServer.Core
                 else if (v.IndexOf('_', StringComparison.Ordinal) > 0)
                 {
                     var s = v.Split('_', StringSplitOptions.RemoveEmptyEntries);
-                    param.Add(new KeyValuePair<string, string>(s[0], string.Join('_', s.Skip(1))));
+                    param.Add(new KeyValuePair<string, string>(s[0], WebUtility.UrlDecode(string.Join('_', s.Skip(1)))));
                 }
                 else
                 {

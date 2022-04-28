@@ -46,6 +46,22 @@ namespace ConversionServer.Core.Tests
             Assert.Contains(msg, exc.Message);
         }
 
+        [Theory]
+        [InlineData("t_%28%29%2C%24", "\"t\": \"(),$\"")]
+        public void ParseEscaped(string value, string msg)
+        {
+            this.Output.WriteLine(value);
+            var steps = ConversionStepExtensions.ParseSteps(value).ToArray();
+
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+
+            var result = JsonSerializer.Serialize(steps, options);
+            this.Output.WriteLine(result);
+
+            Assert.Contains(msg, result);
+        }
+
         public static IEnumerable<object[]> GetParseData(string resourcePrefix)
         {
             foreach (var name in typeof(ConversionStepTests).Assembly.GetManifestResourceNames().Where(s => s.StartsWith(resourcePrefix)))

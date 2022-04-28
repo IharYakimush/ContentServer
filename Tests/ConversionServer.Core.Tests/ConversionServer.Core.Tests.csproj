@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <None Remove="ParseConversionStep\(f_jpg).json" />
+    <None Remove="ParseConversionStep\f_jpg,w_100,$(f_png).json" />
     <None Remove="ParseConversionStep\f_jpg,w_100.json" />
     <None Remove="ParseConversionStep\f_jpg.json" />
     <None Remove="ParseConversionStep\qwe(f_jpg).json" />
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="ParseConversionStep\(f_jpg).json" />
+    <EmbeddedResource Include="ParseConversionStep\f_jpg,w_100,%24%28f_png%29.json" />
     <EmbeddedResource Include="ParseConversionStep\f_jpg,w_100.json" />
     <EmbeddedResource Include="ParseConversionStep\f_jpg.json" />
     <EmbeddedResource Include="ParseConversionStep\qwe(f_jpg).json" />

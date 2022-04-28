@@ -1,0 +1,25 @@
+[
+  {
+    "Input": [],
+    "Conversion": {
+      "Name": "default",
+      "Values": {
+        "f": "png"
+      }
+    },
+    "Output": "07a4af82e9d5fb2a5311de689f08cf14"
+  },
+  {
+    "Input": [
+      "07a4af82e9d5fb2a5311de689f08cf14"
+    ],
+    "Conversion": {
+      "Name": "default",
+      "Values": {
+        "f": "jpg",
+        "w": "100"
+      }
+    },
+    "Output": "result"
+  }
+]

@@ -4,7 +4,8 @@
     "Conversion": {
       "Name": "default",
       "Values": {
-        "f": "jpg"
+        "f": "jpg",
+        "w": "100"
       }
     },
     "Output": "result"

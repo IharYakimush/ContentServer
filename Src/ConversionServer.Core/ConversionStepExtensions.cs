@@ -38,7 +38,14 @@ namespace ConversionServer.Core
             List<string> pv = new List<string>();
             do
             {
-                pv.Add(pmatch.Groups.Values.Select(g => g.Value).Single());
+                var group = pmatch.Groups.Values.Single();
+                pv.Add(group.Value);
+
+                if (value.Length > group.Index + group.Length && value[group.Index + group.Length] != ',')
+                {
+                    throw new ArgumentException($"Unable to parse params {value}", nameof(value));
+                }
+
                 pmatch = pmatch.NextMatch();
 
             } while (pmatch.Success);

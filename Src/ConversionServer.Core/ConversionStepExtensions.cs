@@ -11,6 +11,11 @@ namespace ConversionServer.Core
 
         public static IEnumerable<ConversionStep> ParseSteps(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException($"Unable to parse params. Value cannot be null or whitespace.", nameof(value));
+            }
+
             return ParseSteps(value, true).DistinctBy(s => s.Output);
         }
 
@@ -37,6 +42,11 @@ namespace ConversionServer.Core
                 pmatch = pmatch.NextMatch();
 
             } while (pmatch.Success);
+
+            if (value.Length > pv.Sum(s => s.Length) + pv.Count - 1)
+            {
+                throw new ArgumentException($"Unable to parse params {value}", nameof(value));
+            }
 
             List<string> input = new();
             List<KeyValuePair<string, string>> param = new();

@@ -63,6 +63,12 @@ namespace ConversionServer.Core
                 if (v.StartsWith("$", StringComparison.Ordinal))
                 {
                     string inp = v.TrimStart('$');
+
+                    if (string.IsNullOrWhiteSpace(inp))
+                    {
+                        throw new ArgumentException($"Unable to parse empty reference in {value} for {fname} step", nameof(value));
+                    }
+
                     if (v.Contains('(', StringComparison.Ordinal))
                     {
                         // reference to result of conversion
@@ -81,6 +87,12 @@ namespace ConversionServer.Core
                 else if (v.IndexOf('_', StringComparison.Ordinal) > 0)
                 {
                     var s = v.Split('_', StringSplitOptions.RemoveEmptyEntries);
+                    if (string.IsNullOrWhiteSpace(s[0]))
+                    {
+                        throw new ArgumentException($"Unable to parse param with empty name {v} in {value} for {fname} step", nameof(value));
+
+                    }
+
                     param.Add(new KeyValuePair<string, string>(s[0], WebUtility.UrlDecode(string.Join('_', s.Skip(1)))));
                 }
                 else

@@ -36,31 +36,70 @@ namespace ConversionServer.Core.Tests
         }
 
         [Theory]
+
         [InlineData("qwe", "Unable to parse param qwe in qwe for default step")]
         [InlineData("asd(qwe)", "Unable to parse param qwe in qwe for asd step")]
         [InlineData("(qwe)", "Unable to parse param qwe in qwe for default step")]
         [InlineData("t_asd,qwe", "Unable to parse param qwe in t_asd,qwe for default step")]
+        [InlineData("_qwe,", "Unable to parse param")]
 
         [InlineData("t_qwe,", "Unable to parse param")]
         [InlineData(",t_qwe,", "Unable to parse param")]
         [InlineData(",t_qwe", "Unable to parse param")]
-        [InlineData(",", "Unable to parse param")]
-
         [InlineData("t_qwe)", "Unable to parse param")]
         [InlineData("t_qwe(", "Unable to parse param")]
         [InlineData("(t_qwe", "Unable to parse param")]
         [InlineData(")t_qwe", "Unable to parse param")]
         [InlineData(")t_qwe(", "Unable to parse param")]
+        [InlineData("(t_qwe(", "Unable to parse param")]
+        [InlineData(")t_qwe)", "Unable to parse param")]
+        [InlineData(")t_qwe,", "Unable to parse param")]
+        [InlineData("(t_qwe,", "Unable to parse param")]
+        [InlineData(",t_qwe(", "Unable to parse param")]
+        [InlineData(",t_qwe)", "Unable to parse param")]      
+        public void ParseFailed(string value, string msg)
+        {
+            this.Output.WriteLine(value);
+            var exc = Assert.Throws<ArgumentException>(() => ConversionStepExtensions.ParseSteps(value).ToArray());
 
-        [InlineData("(", "Unable to parse param")]
-        [InlineData(")", "Unable to parse param")]
+            this.Output.WriteLine(exc.Message);
+            Assert.Contains(msg, exc.Message);
+        }
 
+        [Theory]
         [InlineData("t_qwe,,f_jpg", "Unable to parse param")]
         [InlineData("t_qwe()f_jpg", "Unable to parse param")]
+        [InlineData("t_qwe)(f_jpg", "Unable to parse param")]
         [InlineData("t_qwe(f_jpg", "Unable to parse param")]
         [InlineData("t_qwe)f_jpg", "Unable to parse param")]
+        public void ParseSeparatorFailed(string value, string msg)
+        {
+            this.Output.WriteLine(value);
+            var exc = Assert.Throws<ArgumentException>(() => ConversionStepExtensions.ParseSteps(value).ToArray());
 
-        public void ParseFailed(string value, string msg)
+            this.Output.WriteLine(exc.Message);
+            Assert.Contains(msg, exc.Message);
+        }
+
+        [Theory]
+        [InlineData("", "Unable to parse param")]
+        [InlineData(" ", "Unable to parse param")]
+        [InlineData("_", "Unable to parse param")]
+        [InlineData("_ ", "Unable to parse param")]
+        [InlineData(" _", "Unable to parse param")]
+        [InlineData(",", "Unable to parse param")]
+        [InlineData(", ", "Unable to parse param")]
+        [InlineData(" ,", "Unable to parse param")]
+        [InlineData("(", "Unable to parse param")]
+        [InlineData("( ", "Unable to parse param")]
+        [InlineData(" (", "Unable to parse param")]
+        [InlineData(")", "Unable to parse param")]
+        [InlineData(") ", "Unable to parse param")]
+        [InlineData(" )", "Unable to parse param")]
+        [InlineData("$", "Unable to parse empty reference")]
+        [InlineData("$ ", "Unable to parse empty reference")]
+        [InlineData(" $", "Unable to parse param")]
+        public void ParseSingleFailed(string value, string msg)
         {
             this.Output.WriteLine(value);
             var exc = Assert.Throws<ArgumentException>(() => ConversionStepExtensions.ParseSteps(value).ToArray());

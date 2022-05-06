@@ -8,12 +8,14 @@ namespace ContentServer.Core
 {
     public class ContentServerMiddleware : IMiddleware
     {
-        public ContentServerMiddleware(ContentServerOptions options)
+        public ContentServerMiddleware(ContentServerOptions options, ITenantStore tenantStore)
         {
             Options = options ?? throw new ArgumentNullException(nameof(options));
+            TenantStore = tenantStore ?? throw new ArgumentNullException(nameof(tenantStore));
         }
 
         public ContentServerOptions Options { get; }
+        public ITenantStore TenantStore { get; }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
@@ -22,9 +24,9 @@ namespace ContentServer.Core
 
             if (string.Equals(context.Request.Method, HttpMethods.Head, StringComparison.OrdinalIgnoreCase) || string.Equals(context.Request.Method, HttpMethods.Get, StringComparison.OrdinalIgnoreCase))
             {
-                if (this.Options.TryMatchUrl(context.Request.Path.Value, out string? tenant, out string? main, out string? format))
+                if (this.Options.TryMatchUrl(context.Request.Path.Value, out string? tenantId, out string? main, out string? format))
                 {
-
+                    Tenant tenant = this.TenantStore.Find(tenantId!);
                 }                
             }
 

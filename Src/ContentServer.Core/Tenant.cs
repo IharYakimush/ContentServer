@@ -8,8 +8,8 @@ namespace ContentServer.Core
 {
     public class Tenant
     {
-        public Guid Id { get; set; }
+        public string? Id { get; set; }
 
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; }
     }
 }

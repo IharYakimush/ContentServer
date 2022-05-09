@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContentServer.Core
+﻿namespace ContentServer.Core
 {
     public interface ITenantStore
     {
-        Tenant Find(string tenantId);
+        Task<Tenant> Find(string tenantId);
     }
 }

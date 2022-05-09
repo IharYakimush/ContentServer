@@ -8,14 +8,14 @@ namespace ContentServer.Core
 {
     public class ContentServerMiddleware : IMiddleware
     {
-        public ContentServerMiddleware(ContentServerOptions options, ITenantStore tenantStore)
+        public ContentServerMiddleware(ContentServerOptions options, ITenantStorage tenantStore)
         {
             Options = options ?? throw new ArgumentNullException(nameof(options));
             TenantStore = tenantStore ?? throw new ArgumentNullException(nameof(tenantStore));
         }
 
         public ContentServerOptions Options { get; }
-        public ITenantStore TenantStore { get; }
+        public ITenantStorage TenantStore { get; }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {

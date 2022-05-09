@@ -1,6 +1,6 @@
 ﻿namespace ContentServer.Core
 {
-    public interface ITenantStore
+    public interface ITenantStorage
     {
         Task<Tenant> Find(string tenantId);
     }

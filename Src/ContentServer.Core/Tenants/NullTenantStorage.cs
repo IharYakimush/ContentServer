@@ -3,9 +3,11 @@
     public class NullTenantStorage : ITenantStorage
     {
         public static readonly NullTenantStorage Instance = new NullTenantStorage();
-        public Task<Tenant> FindAsync(string tenantId)
+
+        public Task<bool> TryFindAsync(string tenantId, out Tenant? result)
         {
-            return Task.FromResult(new Tenant() { Id = tenantId, Name = tenantId });
+            result = new Tenant() { Id = tenantId, Name = tenantId };
+            return Task.FromResult(true);
         }
     }
 }

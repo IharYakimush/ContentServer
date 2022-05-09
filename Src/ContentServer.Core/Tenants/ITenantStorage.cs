@@ -2,6 +2,6 @@
 {
     public interface ITenantStorage
     {
-        Task<Tenant> FindAsync(string tenantId);
+        Task<bool> TryFindAsync(string tenantId, out Tenant? result);
     }
 }

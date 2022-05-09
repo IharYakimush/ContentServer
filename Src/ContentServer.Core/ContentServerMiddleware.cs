@@ -25,7 +25,11 @@ namespace ContentServer.Core
             {
                 if (this.Options.TryMatchUrl(context.Request.Path.Value, out string? tenantId, out string? main, out string? format))
                 {
-                    Tenant tenant = await this.TenantStore.FindAsync(tenantId!);
+                    Tenant? tenant;
+                    if (await this.TenantStore.TryFindAsync(tenantId!, out tenant))
+                    {
+
+                    }
                 }                
             }
 

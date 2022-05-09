@@ -1,8 +1,7 @@
 ﻿using ContentServer.Core.Internal;
+using ContentServer.Core.Tenants;
 
 using Microsoft.AspNetCore.Http;
-
-using System.Text.RegularExpressions;
 
 namespace ContentServer.Core
 {
@@ -26,7 +25,7 @@ namespace ContentServer.Core
             {
                 if (this.Options.TryMatchUrl(context.Request.Path.Value, out string? tenantId, out string? main, out string? format))
                 {
-                    Tenant tenant = this.TenantStore.Find(tenantId!);
+                    Tenant tenant = await this.TenantStore.FindAsync(tenantId!);
                 }                
             }
 

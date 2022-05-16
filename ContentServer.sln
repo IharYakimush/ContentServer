@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{57686BC9-3
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F57F2C01-44D5-446A-B410-C4ED69B9E4B9}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Conversions.md = Docs\Conversions.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{31B13CDE-1AE9-4DC8-9045-BAAE95D1E8F6}"
 	ProjectSection(SolutionItems) = preProject
@@ -43,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConversionServer.ImageMagic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentServer.AzureFunctions", "Hosts\ContentServer.AzureFunctions\ContentServer.AzureFunctions.csproj", "{7B09975D-3950-4FC4-A606-09FBBCC22DA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentServer.EntityFrameworkCore", "Src\ContentServer.EntityFrameworkCore\ContentServer.EntityFrameworkCore.csproj", "{6A95837A-F4D5-4888-91F0-F756DE62357A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentServer.EntityFrameworkCore", "Src\ContentServer.EntityFrameworkCore\ContentServer.EntityFrameworkCore.csproj", "{6A95837A-F4D5-4888-91F0-F756DE62357A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

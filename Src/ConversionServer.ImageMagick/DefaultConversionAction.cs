@@ -13,6 +13,7 @@ namespace ConversionServer.ImageMagick
         { 
             { "f", (v) => ValidateRegexp(v, new Regex("^(jpg|png)$")) },
             { "w", (v) => ValidateRegexp(v, new Regex("^[1-9]{1}[0-9]{0,4}$")) },
+            { "h", (v) => ValidateRegexp(v, new Regex("^[1-9]{1}[0-9]{0,4}$")) },
         };
 
         public override FileDefinition OutputFormat(IReadOnlyCollection<FileDefinition> inputFormats, IReadOnlyDictionary<string, string> actualParams)
